@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avon Renova</title>
+
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #6a0dad; /* Normal Purple */
+            text-align: center;
+            padding: 1rem;
+            color: white;
+            position: relative; /* Allow absolute positioning of child elements */
+        }
+        .cart-button {
+            position: absolute;
+            left: 20px; /* Position from the left */
+            top: 20px; /* Position from the top */
+            background-color: #6a0dad; /* Normal Purple */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1rem; /* Standard font size */
+            font-family: Georgia, 'Times New Roman', Times, serif; /* Match the font style */
+        }
+        .cart-button:hover {
+            background-color: #5c0e9a; /* Darker Purple */
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 0.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .search-container {
+            text-align: center;
+            padding: 1rem;
+        }
+        .search-container input[type="text"] {
+            padding: 0.5rem;
+            width: 70%;
+            max-width: 300px;
+        }
+        .search-container button {
+            padding: 0.5rem 1rem;
+            background-color: #6a0dad; /* Normal Purple */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #5c0e9a; /* Darker Purple */
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .product {
+            border: 1px solid #ddd;
+            margin: 1rem;
+            padding: 1rem;
+            text-align: center;
+            width: calc(25% - 2rem);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            max-height: 200px; /* Limit height for uniformity */
+            object-fit: contain; /* Ensures images are scaled correctly */
+        }
+        .product h3 {
+            color: #333;
+        }
+        .product p {
+            color: #666;
+        }
+        .product button {
+            background-color: #6a0dad; /* Normal Purple */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        .product button:hover {
+            background-color: #5c0e9a; /* Darker Purple */
+        }
+        footer {
+            text-align: center; /* Ensure footer text is centered */
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .contact-info {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        /* Centering text for headings and paragraphs */
+        h2, p {
+            text-align: center; /* Center align text for headings and paragraphs */
+        }
+        /* Media Queries for Responsive Design */
+        @media (max-width: 1200px) {
+            .product {
+                width: calc(33.33% - 2rem);
+            }
+        }
+        @media (max-width: 992px) {
+            .product {
+                width: calc(50% - 2rem);
+            }
+        }
+        @media (max-width: 768px) {
+            .product {
+                width: calc(100% - 2rem);
+            }
+            .cart-button {
+                padding: 0.3rem 0.7rem; /* Adjust button padding for smaller screens */
+                font-size: 0.9rem; /* Smaller font size */
+            }
+        }
+        @media (max-width: 480px) {
+            .search-container input[type="text"] {
+                width: 90%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <button class="cart-button" onclick="mostrarCarrinho()">Ver Carrinho</button>
+        <h1>Avon Renova</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Pesquisar produto...">
+            <button onclick="pesquisarProduto()">Buscar</button>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="#" onclick="scrollToSection('home')">Home</a>
+        <a href="#" onclick="scrollToSection('produtos')">Produtos</a>
+        <a href="#" onclick="scrollToSection('sobre')">Sobre</a>
+        <a href="#" onclick="scrollToSection('contato')">Contato</a>
+    </nav>
+    
+    <div class="container" id="productContainer">
+        <div class="product">
+            <img src="c:\Users\User\Pictures\prod_1233767_1_613x613_unq_3f57648ab27a4059ab22e2e0bd084410.jpg" alt="Produto 1">
+            <h3>Produto 1</h3>
+            <p>Nova renovação da pele Creme Energético</p>
+            <button onclick="adicionarAoCarrinho('Produto 1')">Comprar</button>
+        </div>
+    
+        <div class="product">
+            <img src="c:\Users\User\Pictures\prod_1184492_1_613x613.jpg" alt="Produto 2">
+            <h3>Produto 2</h3>
+            <p>Atração por Ele Eau de Toilette 75ml</p>
+            <button onclick="adicionarAoCarrinho('Produto 2')">Comprar</button>
+        </div>
+    
+        <div class="product">
+            <img src="c:\Users\User\Pictures\prod_2241019_1_613x613.jpg" alt="Produto 3">
+            <h3>Produto 3</h3>
+            <p>Eau de Toilette e spray corporal Black Suede Touch</p>
+            <button onclick="adicionarAoCarrinho('Produto 3')">Comprar</button>
+        </div>
+    
+        <div class="product">
+            <img src="c:\Users\User\Pictures\prod_1195043_1_613x613.jpg" alt="Produto 4">
+            <h3>Produto 4</h3>
+            <p>Far Away Infinity Eau de Parfum 30ml</p>
+            <button onclick="adicionarAoCarrinho('Produto 4')">Comprar</button>
+        </div>
+    
+        <div class="product">
+            <img src="c:\Users\User\Pictures\prod_2241012_1_613x613_unq_1e59ae122b024f41a30771feea9d2826.jpg" alt="Produto 5">
+            <h3>Produto 5</h3>
+            <p>Glamour Distante o trio</p>
+            <button onclick="adicionarAoCarrinho('Produto 5')">Comprar</button>
+        </div>
+    
+        <div class="product">
+            <img src="c:\Users\User\Pictures\prod_2241011_1_310x310.jpg" alt="Produto 6">
+            <h3>Produto 6</h3>
+            <p>Roll-On ativo masculino On Duty, sabonete líquido essencial para cabelo e corpo Avon Care Men, gel de barbear e gel Hydra 3 em 1</p>
+            <button onclick="adicionarAoCarrinho('Produto 6')">Comprar</button>
+        </div>
+    
+        <div class="product">
+            <img src="c:\Users\User\Pictures\prod_1172802_1_613x613.jpg" alt="Produto 7">
+            <h3>Produto 7</h3>
+            <p>Sorte para Ele Eau de Toilette 75ml</p>
+            <button onclick="adicionarAoCarrinho('Produto 7')">Comprar</button>
+        </div>
+    </div>
+    
+    <div id="home">
+        <h2>Bem-vindo à Avon Renova</h2>
+        <p>Somos uma loja online de venda de cosméticos para crianças e adultos, vendemos bijuterias e outros vários artigos.</p>
+    </div>
+    
+    <div id="produtos">
+        <h2>Nossos Produtos</h2>
+        <p>Temos todos os produtos que precisas.</p>
+        <!-- Product cards go here -->
+    </div>
+    
+    <div id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Loja online</p>
+        <p>AVON - Encomenda 7-10 dias úteis</p> 
+        <p>Temos as seguintes formas de pagamento:</p>   
+        <p>Mpesa, Emola e BIM</p>
+        <p>Estamos localizados na Cidade de Maputo</p>
+    </div>
+    
+    <div id="contato">
+        <h2>Contato da Loja</h2>
+        <p>Telefone: (258) 846047305</p>
+        <p>Ou</p> 
+        <p>(258) 866047306</p>
+        <p>Email do vendedor: <a href="mailto:liliamacamo99@gmail.com">liliamacamo99@gmail.com</a></p>
+    </div>
+
+    <p>Acesse o site em: <a href="https://seunome.github.io/avon-renova/">Avon Renova</a></p>
+    
+    <footer>
+        <p>&copy; 2024 Avon Renova. Todos os direitos reservados.</p>
+    </footer>    
+
+    <script>
+        // Array to hold cart items
+        const cart = [];
+    
+        function adicionarAoCarrinho(produto) {
+            // Add product to cart
+            cart.push(produto);
+            alert(produto + " foi adicionado ao carrinho!");
+            console.log("Carrinho:", cart); // Display cart items in the console for debugging
+        }
+    
+        function pesquisarProduto() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const products = document.querySelectorAll(".product");
+            
+            products.forEach(product => {
+                const productName = product.querySelector("h3").innerText.toLowerCase();
+                product.style.display = productName.includes(input) ? "block" : "none";
+            });
+        }
+    
+        function mostrarCarrinho() {
+            if (cart.length === 0) {
+                alert("Seu carrinho está vazio!");
+            } else {
+                alert("Produtos no carrinho:\n" + cart.join("\n"));
+            }
+        }
+    
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</body>
+</html>
